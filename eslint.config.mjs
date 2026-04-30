@@ -51,6 +51,7 @@ export default defineConfig([
         property: "random",
         message: "Reminder to remove Math.random() after you're finished debugging.",
       }],
+      "no-shadow": "off",
       "no-use-before-define": ["error", { functions: false, classes: true, variables: true }],
       // typescript-eslint
       "@typescript-eslint/array-type": ["error", { default: "generic" }],
@@ -103,6 +104,7 @@ export default defineConfig([
           },
         },
       ],
+      "@typescript-eslint/no-shadow": ["error", { ignoreTypeValueShadow: false }],
       "@typescript-eslint/no-unnecessary-condition": ["error", { checkTypePredicates: true }],
       "@typescript-eslint/no-unnecessary-type-parameters": "off",
       "@typescript-eslint/no-unused-vars": [

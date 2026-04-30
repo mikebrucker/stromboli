@@ -39,7 +39,7 @@ export default function RootLayout() {
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="recipes" options={{ headerShown: false }} />
       <Stack.Screen name="user" options={{ headerShown: false }} />
-      <Stack.Screen name="user/edit" options={{ presentation: "modal", title: "Edit Profile" }} />
+      {/* <Stack.Screen name="user/edit" options={{ presentation: "modal", title: "Edit Profile" }} /> */}
       {/* <Stack.Screen name="settings" options={{ headerShown: false }} /> */}
     </Stack>
   );
