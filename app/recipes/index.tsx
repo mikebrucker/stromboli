@@ -19,7 +19,7 @@ export default function RecipesScreen() {
       />
       <RecipeGrid
         recipes={filteredRecipes}
-        onPressRecipe={(id) => { router.push(`/recipes/${id}`); }}
+        onPressRecipe={id => { router.push(`/recipes/${id}`); }}
       />
     </View>
   );

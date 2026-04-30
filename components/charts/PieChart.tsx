@@ -9,7 +9,7 @@ type PieSlice = {
 };
 
 interface PieChartProps {
-  data: PieSlice[];
+  data: Array<PieSlice>;
   title?: string;
   variant?: "donut" | "pie";
 }

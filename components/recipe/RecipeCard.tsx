@@ -15,19 +15,17 @@ export function RecipeCard({ recipe, onPress }: RecipeCardProps) {
       onPress={() => { onPress(recipe.id); }}
       className="bg-white rounded-2xl overflow-hidden shadow-sm mb-4 active:opacity-70"
     >
-      {recipe.imageUri
-        ? (
-            <Image
-              source={{ uri: recipe.imageUri }}
-              className="w-full h-40"
-              resizeMode="cover"
-            />
-          )
-        : (
-            <View className="w-full h-40 bg-amber-100 items-center justify-center">
-              <Text className="text-4xl">🍽️</Text>
-            </View>
-          )}
+      {recipe.imageUri ? (
+        <Image
+          source={{ uri: recipe.imageUri }}
+          className="w-full h-40"
+          resizeMode="cover"
+        />
+      ) : (
+        <View className="w-full h-40 bg-amber-100 items-center justify-center">
+          <Text className="text-4xl">🍽️</Text>
+        </View>
+      )}
 
       <View className="p-3">
         <Text className="text-lg font-bold text-gray-900" numberOfLines={1}>

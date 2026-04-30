@@ -7,7 +7,7 @@ interface BarDataPoint {
 }
 
 interface BarChartProps {
-  data: BarDataPoint[];
+  data: Array<BarDataPoint>;
   title?: string;
   color?: string;
   unit?: string;

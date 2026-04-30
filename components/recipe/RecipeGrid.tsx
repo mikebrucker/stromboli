@@ -3,7 +3,7 @@ import { FlatList, Text, View } from "react-native";
 import { RecipeCard } from "./RecipeCard";
 
 interface RecipeGridProps {
-  recipes: Recipe[];
+  recipes: Array<Recipe>;
   onPressRecipe: (id: string) => void;
 }
 

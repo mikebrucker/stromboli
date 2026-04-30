@@ -43,7 +43,7 @@ export function UserEditForm({ onSave, onCancel }: UserEditFormProps) {
         <View>
           <Text className="text-sm text-gray-500 mb-2">Units</Text>
           <View className="flex-row gap-2">
-            {(["metric", "imperial"] as UnitSystem[]).map(u => (
+            {(["metric", "imperial"] as Array<UnitSystem>).map(u => (
               <Pressable
                 key={u}
                 onPress={() => { setUnit(u); }}
@@ -65,7 +65,7 @@ export function UserEditForm({ onSave, onCancel }: UserEditFormProps) {
         <View>
           <Text className="text-sm text-gray-500 mb-2">Language</Text>
           <View className="flex-row gap-2">
-            {(["en", "de-at"] as Language[]).map(l => (
+            {(["en", "de"] as Array<Language>).map(l => (
               <Pressable
                 key={l}
                 onPress={() => { setLang(l); }}

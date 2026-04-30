@@ -43,12 +43,12 @@ export interface Recipe {
   servings: number;
   prepMinutes: number;
   cookMinutes: number;
-  tags: Tag[];
+  tags: Array<Tag>;
   imageUri?: string;
   source?: string;
   isFavorite: boolean;
-  ingredients: Ingredient[];
-  steps: string[];
+  ingredients: Array<Ingredient>;
+  steps: Array<string>;
   createdAt: string;
   updatedAt: string;
 }

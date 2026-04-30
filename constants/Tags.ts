@@ -1,6 +1,6 @@
 import type { Tag } from "@/types";
 
-export const TAGS: Tag[] = [
+export const TAGS: Array<Tag> = [
   "breakfast",
   "lunch",
   "dinner",

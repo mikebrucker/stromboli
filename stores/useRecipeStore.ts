@@ -5,7 +5,7 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
 interface RecipeState {
-  recipes: Recipe[];
+  recipes: Array<Recipe>;
   seeded: boolean;
   addRecipe: (recipe: Recipe) => void;
   updateRecipe: (id: string, updates: Partial<Recipe>) => void;

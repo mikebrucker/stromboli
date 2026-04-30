@@ -1,8 +1,8 @@
 import type { Recipe, Tag } from "@/types";
 import { useState } from "react";
 
-export function useRecipeFilter(recipes: Recipe[]) {
-  const [activeTags, setActiveTags] = useState<Tag[]>([]);
+export function useRecipeFilter(recipes: Array<Recipe>) {
+  const [activeTags, setActiveTags] = useState<Array<Tag>>([]);
 
   const toggleTag = (tag: Tag) => {
     setActiveTags(prev =>
@@ -10,9 +10,7 @@ export function useRecipeFilter(recipes: Recipe[]) {
     );
   };
 
-  const filteredRecipes = activeTags.length === 0
-    ? recipes
-    : recipes.filter(r => activeTags.every(t => r.tags.includes(t)));
+  const filteredRecipes = activeTags.length === 0 ? recipes : recipes.filter(r => activeTags.every(t => r.tags.includes(t)));
 
   return { filteredRecipes, activeTags, toggleTag };
 }

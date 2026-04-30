@@ -1,6 +1,6 @@
 import type { Recipe } from "@/types";
 
-export const seeds: Recipe[] = [
+export const seeds: Array<Recipe> = [
   {
     id: "1",
     title: "Cornbread",

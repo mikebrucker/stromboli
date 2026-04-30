@@ -2,8 +2,8 @@ import type { Tag } from "@/types/recipe.types";
 import { Pressable, ScrollView, Text } from "react-native";
 
 interface RecipeFilterProps {
-  tags: Tag[];
-  activeTags: Tag[];
+  tags: Array<Tag>;
+  activeTags: Array<Tag>;
   onToggleTag: (tag: Tag) => void;
 }
 
@@ -15,7 +15,7 @@ export function RecipeFilter({ tags, activeTags, onToggleTag }: RecipeFilterProp
       className="py-2"
       contentContainerStyle={{ gap: 8, paddingHorizontal: 16 }}
     >
-      {tags.map((tag) => {
+      {tags.map(tag => {
         const isActive = activeTags.includes(tag);
         return (
           <Pressable

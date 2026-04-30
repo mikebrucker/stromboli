@@ -26,7 +26,7 @@ export const useUserStore = create<UserState>()(
         set(state => ({
           user: state.user ? { ...state.user, preferredUnit } : null,
         })),
-      updatePreferredLanguage: (language) => {
+      updatePreferredLanguage: language => {
         set(state => ({
           user: state.user ? { ...state.user, preferredLanguage: language } : null,
         }));

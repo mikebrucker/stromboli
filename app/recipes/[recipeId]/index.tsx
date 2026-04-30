@@ -3,13 +3,11 @@ import { useLocalSearchParams } from "expo-router";
 import { lazy, Suspense } from "react";
 import { Platform, ScrollView, Text, View } from "react-native";
 
-const RecipeCharts = Platform.OS === "web"
-  ? lazy(async () => {
-      const { LoadSkiaWeb } = await import("@shopify/react-native-skia/lib/module/web");
-      await LoadSkiaWeb({ locateFile: () => "/canvaskit.wasm" });
-      return import("@/components/recipe/RecipeCharts");
-    })
-  : lazy(() => import("@/components/recipe/RecipeCharts"));
+const RecipeCharts = Platform.OS === "web" ? lazy(async () => {
+  const { LoadSkiaWeb } = await import("@shopify/react-native-skia/lib/module/web");
+  await LoadSkiaWeb({ locateFile: () => "/canvaskit.wasm" });
+  return import("@/components/recipe/RecipeCharts");
+}) : lazy(() => import("@/components/recipe/RecipeCharts"));
 
 export default function RecipeDetailScreen() {
   const { recipeId } = useLocalSearchParams<{ recipeId: string }>();
