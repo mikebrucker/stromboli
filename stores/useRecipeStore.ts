@@ -39,7 +39,8 @@ export const useRecipeStore = create<RecipeState>()(
           ),
         })),
       seedRecipes: () => {
-        if (!get().seeded) {
+        const state = get();
+        if (!state.seeded || state.recipes.length === 0) {
           set({ recipes: seeds, seeded: true });
         }
       },
