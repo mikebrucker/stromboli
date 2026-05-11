@@ -1,5 +1,5 @@
 import { seeds } from "@/data/seeds";
-import type { Recipe } from "@/types";
+import type { Recipe } from "@/types/recipe.types";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";

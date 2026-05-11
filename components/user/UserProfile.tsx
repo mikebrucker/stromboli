@@ -1,4 +1,5 @@
-import { useLanguageStore, useUserStore } from "@/stores";
+import { useLanguageStore } from "@/stores/useLanguageStore";
+import { useUserStore } from "@/stores/useUserStore";
 import { Pressable, Text, View } from "react-native";
 
 interface UserProfileProps {

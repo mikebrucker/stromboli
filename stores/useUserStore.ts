@@ -1,4 +1,5 @@
-import type { Language, UnitSystem, User } from "@/types";
+import type { UnitSystem } from "@/types/recipe.types";
+import type { Language, User } from "@/types/user.types";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";

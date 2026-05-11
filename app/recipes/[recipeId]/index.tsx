@@ -1,4 +1,4 @@
-import { useRecipeStore } from "@/stores";
+import { useRecipeStore } from "@/stores/useRecipeStore";
 import { useLocalSearchParams } from "expo-router";
 import { lazy, Suspense } from "react";
 import { Platform, ScrollView, Text, View } from "react-native";

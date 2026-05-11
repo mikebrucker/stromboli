@@ -1,5 +1,5 @@
-import { CountUnits } from "@/types";
-import type { ImperialUnit, MetricUnit, Unit } from "@/types";
+import { CountUnits } from "@/types/recipe.types";
+import type { ImperialUnit, MetricUnit, Unit } from "@/types/recipe.types";
 
 interface ConvertedUnit {
   amount: number;

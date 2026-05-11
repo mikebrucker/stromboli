@@ -1,7 +1,7 @@
 import { RecipeFilter, RecipeGrid } from "@/components/recipe";
-import { TAGS } from "@/constants";
-import { useRecipeFilter } from "@/hooks";
-import { useRecipeStore } from "@/stores";
+import { TAGS } from "@/constants/Tags";
+import { useRecipeFilter } from "@/hooks/useRecipeFilter";
+import { useRecipeStore } from "@/stores/useRecipeStore";
 import { useRouter } from "expo-router";
 import { View } from "react-native";
 

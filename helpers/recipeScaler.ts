@@ -1,4 +1,4 @@
-import type { Recipe, ScaleMultiplier } from "@/types";
+import type { Recipe, ScaleMultiplier } from "@/types/recipe.types";
 
 export function scaleRecipe(recipe: Recipe, multiplier: ScaleMultiplier = 1): Recipe {
   if (multiplier === 1) return recipe;

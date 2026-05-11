@@ -1,5 +1,7 @@
-import { useLanguageStore, useUserStore } from "@/stores";
-import type { Language, UnitSystem } from "@/types";
+import { useLanguageStore } from "@/stores/useLanguageStore";
+import { useUserStore } from "@/stores/useUserStore";
+import type { UnitSystem } from "@/types/recipe.types";
+import type { Language } from "@/types/user.types";
 import { useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 

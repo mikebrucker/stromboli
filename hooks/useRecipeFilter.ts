@@ -1,4 +1,4 @@
-import type { Recipe, Tag } from "@/types";
+import type { Recipe, Tag } from "@/types/recipe.types";
 import { useState } from "react";
 
 export function useRecipeFilter(recipes: Array<Recipe>) {
