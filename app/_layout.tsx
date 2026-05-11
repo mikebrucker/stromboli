@@ -1,9 +1,13 @@
-import { useRecipeStore } from "@/stores";
+import { useAppTheme } from "@/hooks/useAppTheme";
+import { useRecipeStore } from "@/stores/useRecipeStore";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
+import { useColorScheme, vars } from "nativewind";
 import { useEffect } from "react";
+import { View } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import "react-native-reanimated";
 
 import "../global.css";
@@ -20,6 +24,12 @@ export default function RootLayout() {
   });
 
   const seedRecipes = useRecipeStore(state => state.seedRecipes);
+  const { colorMode, accentVars } = useAppTheme();
+  const { setColorScheme } = useColorScheme();
+
+  useEffect(() => {
+    setColorScheme(colorMode);
+  }, []);
 
   useEffect(() => {
     if (error) throw error;
@@ -35,12 +45,13 @@ export default function RootLayout() {
   if (!loaded) return null;
 
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="recipes" options={{ headerShown: false }} />
-      <Stack.Screen name="user" options={{ headerShown: false }} />
-      {/* <Stack.Screen name="user/edit" options={{ presentation: "modal", title: "Edit Profile" }} /> */}
-      {/* <Stack.Screen name="settings" options={{ headerShown: false }} /> */}
-    </Stack>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <View style={[{ flex: 1 }, vars(accentVars)]}>
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
+        </Stack>
+      </View>
+    </GestureHandlerRootView>
   );
 }
