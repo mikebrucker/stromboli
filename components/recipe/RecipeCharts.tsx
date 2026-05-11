@@ -1,5 +1,5 @@
 import { BarChart, PieChart } from "@/components/charts";
-import type { Recipe } from "@/types";
+import type { Recipe } from "@/types/recipe.types";
 
 interface Props {
   recipe: Recipe;
