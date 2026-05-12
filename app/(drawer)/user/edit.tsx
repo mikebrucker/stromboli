@@ -1,4 +1,4 @@
-import { UserEditForm } from "@/components/user";
+import { UserEditForm } from "@/components/user/UserEditForm";
 import { useRouter } from "expo-router";
 
 export default function UserEditScreen() {

@@ -1,9 +1,10 @@
+import { useLanguageStore } from "@/stores/useLanguageStore";
+import type { Language } from "@/types/app.types";
 import type { UnitSystem } from "@/types/recipe.types";
-import type { Language, User } from "@/types/user.types";
+import type { User } from "@/types/user.types";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { useLanguageStore } from "./useLanguageStore";
 
 interface UserState {
   user: User | null;

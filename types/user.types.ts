@@ -1,7 +1,5 @@
-import type { UnitSystem } from "./recipe.types";
-
-export const Languages = { en: "en", de: "de" } as const;
-export type Language = keyof typeof Languages;
+import { Language } from "@/types/app.types";
+import type { UnitSystem } from "@/types/recipe.types";
 
 export interface User {
   id: string;

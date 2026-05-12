@@ -10,6 +10,8 @@ import { View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import "react-native-reanimated";
 
+import "@/lib/i18n";
+// eslint-disable-next-line no-restricted-imports
 import "../global.css";
 
 export { ErrorBoundary } from "expo-router";
@@ -48,8 +50,14 @@ export default function RootLayout() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <View style={[{ flex: 1 }, vars(accentVars)]}>
         <Stack>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-          <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="index"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="(drawer)"
+            options={{ headerShown: false }}
+          />
         </Stack>
       </View>
     </GestureHandlerRootView>

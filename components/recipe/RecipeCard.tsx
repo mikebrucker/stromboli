@@ -1,4 +1,5 @@
 import type { Recipe } from "@/types/recipe.types";
+import { useTranslation } from "react-i18next";
 import { Image, Pressable, Text, View } from "react-native";
 
 interface RecipeCardProps {
@@ -7,6 +8,7 @@ interface RecipeCardProps {
 }
 
 export function RecipeCard({ recipe, onPress }: RecipeCardProps) {
+  const { t } = useTranslation();
   const totalCalories = recipe.ingredients.reduce((sum, i) => sum + i.calories, 0);
   const totalMinutes = recipe.prepMinutes + recipe.cookMinutes;
 
@@ -40,13 +42,13 @@ export function RecipeCard({ recipe, onPress }: RecipeCardProps) {
             <Text className="text-xs text-gray-400">
               ⏱
               {totalMinutes}
-              m
+              {t("unit.minute")}
             </Text>
             <Text className="text-xs text-gray-400">
               🔥
               {totalCalories}
               {" "}
-              kcal
+              {t("unit.kcal")}
             </Text>
           </View>
           <DifficultyBadge difficulty={recipe.difficulty} />
@@ -56,7 +58,7 @@ export function RecipeCard({ recipe, onPress }: RecipeCardProps) {
           <View className="flex-row flex-wrap gap-1 mt-2">
             {recipe.tags.slice(0, 3).map(tag => (
               <View key={tag} className="bg-amber-50 rounded-full px-2 py-0.5">
-                <Text className="text-xs text-amber-700 capitalize">{tag}</Text>
+                <Text className="text-xs text-amber-700">{t(`tags.${tag}`)}</Text>
               </View>
             ))}
           </View>
@@ -67,6 +69,7 @@ export function RecipeCard({ recipe, onPress }: RecipeCardProps) {
 }
 
 function DifficultyBadge({ difficulty }: { difficulty: Recipe["difficulty"] }) {
+  const { t } = useTranslation();
   const styles: Record<Recipe["difficulty"], string> = {
     easy: "bg-green-100 text-green-700",
     medium: "bg-yellow-100 text-yellow-700",
@@ -75,8 +78,8 @@ function DifficultyBadge({ difficulty }: { difficulty: Recipe["difficulty"] }) {
 
   return (
     <View className={`rounded-full px-2 py-0.5 ${styles[difficulty].split(" ")[0]}`}>
-      <Text className={`text-xs capitalize ${styles[difficulty].split(" ")[1]}`}>
-        {difficulty}
+      <Text className={`text-xs ${styles[difficulty].split(" ")[1]}`}>
+        {t(`difficulty.${difficulty}`)}
       </Text>
     </View>
   );

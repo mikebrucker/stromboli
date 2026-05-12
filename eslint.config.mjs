@@ -44,6 +44,12 @@ export default defineConfig([
   {
     rules: {
       "eqeqeq": "error",
+      "no-restricted-imports": ["error", {
+        patterns: [{
+          group: ["./**", "../**"],
+          message: "Use '@/' path alias instead of relative imports.",
+        }],
+      }],
       "no-extra-boolean-cast": "off",
       "no-console": ["warn", { allow: ["error"] }],
       "no-restricted-properties": ["warn", {

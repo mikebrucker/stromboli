@@ -1,5 +1,6 @@
 export const ColorModes = { system: "system", light: "light", dark: "dark" } as const;
 export type ColorMode = keyof typeof ColorModes;
+export const colorModes: Array<ColorMode> = Object.values(ColorModes);
 
 export const Accents = {
   slate: "slate",
@@ -26,3 +27,4 @@ export const Accents = {
   rose: "rose",
 } as const;
 export type Accent = keyof typeof Accents;
+export const accents: Array<Accent> = Object.values(Accents);

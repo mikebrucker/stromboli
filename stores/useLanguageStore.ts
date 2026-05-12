@@ -1,4 +1,5 @@
-import type { Language } from "@/types/user.types";
+import i18n from "@/lib/i18n";
+import type { Language } from "@/types/app.types";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
@@ -12,7 +13,10 @@ export const useLanguageStore = create<LanguageState>()(
   persist(
     set => ({
       language: "en",
-      setLanguage: language => set({ language }),
+      setLanguage: language => {
+        void i18n.changeLanguage(language);
+        set({ language });
+      },
     }),
     {
       name: "language-store",

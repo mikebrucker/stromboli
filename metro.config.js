@@ -24,4 +24,5 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
   return context.resolveRequest(context, moduleName, platform);
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 module.exports = withNativeWind(config, { input: "./global.css" });

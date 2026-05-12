@@ -1,0 +1,63 @@
+{
+  "drawer": {
+    "recipes": "Recipes",
+    "user": "Profile"
+  },
+  "recipe": {
+    "notFound": "Recipe not found",
+    "addComingSoon": "Add Recipe — coming soon",
+    "noRecipesFound": "No recipes found",
+    "macroSplit": "Macro Split",
+    "caloriesPerIngredient": "Calories per Ingredient",
+    "macros": {
+      "protein": "Protein",
+      "carbs": "Carbs",
+      "fat": "Fat"
+    }
+  },
+  "user": {
+    "notFound": "No user found",
+    "editProfile": "Edit Profile",
+    "language": "Language",
+    "units": "Units"
+  },
+  "unitSystem": {
+    "metric": "Metric",
+    "imperial": "Imperial"
+  },
+  "unit": {
+    "kcal": "kcal",
+    "minute": "m"
+  },
+  "language": {
+    "en": "English",
+    "de": "German"
+  },
+  "difficulty": {
+    "easy": "Easy",
+    "medium": "Medium",
+    "hard": "Hard"
+  },
+  "tags": {
+    "breakfast": "Breakfast",
+    "lunch": "Lunch",
+    "dinner": "Dinner",
+    "dessert": "Dessert",
+    "snack": "Snack",
+    "soup": "Soup",
+    "salad": "Salad",
+    "pasta": "Pasta",
+    "grill": "Grill",
+    "baked": "Baked",
+    "asian": "Asian",
+    "austrian": "Austrian",
+    "vegetarian": "Vegetarian",
+    "vegan": "Vegan"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "name": "Name",
+    "namePlaceholder": "Your name"
+  }
+}

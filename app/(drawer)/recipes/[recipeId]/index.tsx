@@ -1,5 +1,6 @@
 import { useRecipeStore } from "@/stores/useRecipeStore";
 import { useLocalSearchParams } from "expo-router";
+import { useTranslation } from "react-i18next";
 import { lazy, Suspense } from "react";
 import { Platform, ScrollView, Text, View } from "react-native";
 
@@ -10,6 +11,7 @@ const RecipeCharts = Platform.OS === "web" ? lazy(async () => {
 }) : lazy(() => import("@/components/recipe/RecipeCharts"));
 
 export default function RecipeDetailScreen() {
+  const { t } = useTranslation();
   const { recipeId } = useLocalSearchParams<{ recipeId: string }>();
   const getRecipeById = useRecipeStore(state => state.getRecipeById);
   const recipe = getRecipeById(recipeId);
@@ -17,7 +19,7 @@ export default function RecipeDetailScreen() {
   if (!recipe) {
     return (
       <View className="flex-1 items-center justify-center">
-        <Text className="text-gray-500">Recipe not found</Text>
+        <Text className="text-gray-500">{t("recipe.notFound")}</Text>
       </View>
     );
   }

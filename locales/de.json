@@ -1,0 +1,63 @@
+{
+  "drawer": {
+    "recipes": "Rezepte",
+    "user": "Profil"
+  },
+  "recipe": {
+    "notFound": "Rezept nicht gefunden",
+    "addComingSoon": "Rezept hinzufügen — kommt bald",
+    "noRecipesFound": "Keine Rezepte gefunden",
+    "macroSplit": "Makro-Aufteilung",
+    "caloriesPerIngredient": "Kalorien pro Zutat",
+    "macros": {
+      "protein": "Eiweiß",
+      "carbs": "Kohlenhydrate",
+      "fat": "Fett"
+    }
+  },
+  "user": {
+    "notFound": "Kein Benutzer gefunden",
+    "editProfile": "Profil bearbeiten",
+    "language": "Sprache",
+    "units": "Einheiten"
+  },
+  "unitSystem": {
+    "metric": "Metrisch",
+    "imperial": "Imperial"
+  },
+  "unit": {
+    "kcal": "kcal",
+    "minute": "Min."
+  },
+  "language": {
+    "en": "Englisch",
+    "de": "Deutsch"
+  },
+  "difficulty": {
+    "easy": "Einfach",
+    "medium": "Mittel",
+    "hard": "Schwer"
+  },
+  "tags": {
+    "breakfast": "Frühstück",
+    "lunch": "Mittagessen",
+    "dinner": "Abendessen",
+    "dessert": "Dessert",
+    "snack": "Snack",
+    "soup": "Suppe",
+    "salad": "Salat",
+    "pasta": "Pasta",
+    "grill": "Grillen",
+    "baked": "Gebacken",
+    "asian": "Asiatisch",
+    "austrian": "Österreichisch",
+    "vegetarian": "Vegetarisch",
+    "vegan": "Vegan"
+  },
+  "common": {
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "name": "Name",
+    "namePlaceholder": "Dein Name"
+  }
+}

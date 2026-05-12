@@ -1,5 +1,6 @@
 import { useLanguageStore } from "@/stores/useLanguageStore";
 import { useUserStore } from "@/stores/useUserStore";
+import { useTranslation } from "react-i18next";
 import { Pressable, Text, View } from "react-native";
 
 interface UserProfileProps {
@@ -7,13 +8,14 @@ interface UserProfileProps {
 }
 
 export function UserProfile({ onEditPress }: UserProfileProps) {
+  const { t } = useTranslation();
   const user = useUserStore(state => state.user);
   const language = useLanguageStore(state => state.language);
 
   if (!user) {
     return (
       <View className="flex-1 items-center justify-center">
-        <Text className="text-gray-500 text-base">No user found</Text>
+        <Text className="text-gray-500 text-base">{t("user.notFound")}</Text>
       </View>
     );
   }
@@ -29,15 +31,15 @@ export function UserProfile({ onEditPress }: UserProfileProps) {
         </View>
 
         <View className="gap-3">
-          <ProfileRow label="Language" value={language === "en" ? "🇬🇧 English" : "🇦🇹 Deutsch"} />
-          <ProfileRow label="Units" value={user.preferredUnit === "metric" ? "Metric (g, ml)" : "Imperial (oz, fl oz)"} />
+          <ProfileRow label={t("user.language")} value={t(`language.${language}`)} />
+          <ProfileRow label={t("user.units")} value={t(`units.${user.preferredUnit}`)} />
         </View>
 
         <Pressable
           onPress={onEditPress}
           className="mt-6 bg-amber-500 rounded-xl py-3 items-center active:opacity-70"
         >
-          <Text className="text-white font-semibold">Edit Profile</Text>
+          <Text className="text-white font-semibold">{t("user.editProfile")}</Text>
         </Pressable>
       </View>
     </View>

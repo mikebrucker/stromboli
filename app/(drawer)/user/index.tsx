@@ -1,4 +1,4 @@
-import { UserProfile } from "@/components/user";
+import { UserProfile } from "@/components/user/UserProfile";
 import { useRouter } from "expo-router";
 
 export default function UserScreen() {
