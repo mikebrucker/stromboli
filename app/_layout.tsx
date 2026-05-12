@@ -1,6 +1,7 @@
 import { useAppTheme } from "@/hooks/useAppTheme";
 import { useRecipeStore } from "@/stores/useRecipeStore";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { PortalHost } from "@rn-primitives/portal";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
@@ -31,8 +32,8 @@ export default function RootLayout() {
   const { setColorScheme } = useColorScheme();
 
   useEffect(() => {
-    setColorScheme(colorMode);
-  }, []);
+    if (colorMode !== "system") setColorScheme(colorMode);
+  }, [colorMode]);
 
   useEffect(() => {
     if (error) throw error;
@@ -61,6 +62,7 @@ export default function RootLayout() {
           />
         </Stack>
       </View>
+      <PortalHost />
     </GestureHandlerRootView>
   );
 }

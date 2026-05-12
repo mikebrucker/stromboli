@@ -1,5 +1,5 @@
-import { CountUnits } from "@/types/recipe.types";
 import type { ImperialUnit, MetricUnit, Unit } from "@/types/recipe.types";
+import { CountUnits } from "@/types/recipe.types";
 
 interface ConvertedUnit {
   amount: number;
@@ -24,14 +24,14 @@ const IMPERIAL_TO_METRIC: Record<ImperialUnit, { factor: number; unit: MetricUni
   in: { factor: 2.54, unit: "cm" },
 };
 
-export function toImperial(amount: number, unit: Unit): ConvertedUnit {
+export function toImperial(amount: number, unit: MetricUnit): ConvertedUnit {
   if (unit in CountUnits) return { amount, unit };
-  const conversion = METRIC_TO_IMPERIAL[unit as MetricUnit];
+  const conversion = METRIC_TO_IMPERIAL[unit];
   return { amount: amount * conversion.factor, unit: conversion.unit };
 }
 
-export function toMetric(amount: number, unit: Unit): ConvertedUnit {
+export function toMetric(amount: number, unit: ImperialUnit): ConvertedUnit {
   if (unit in CountUnits) return { amount, unit };
-  const conversion = IMPERIAL_TO_METRIC[unit as ImperialUnit];
+  const conversion = IMPERIAL_TO_METRIC[unit];
   return { amount: amount * conversion.factor, unit: conversion.unit };
 }

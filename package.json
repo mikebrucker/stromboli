@@ -15,13 +15,16 @@
     "web": "expo start --web",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "palette": "node ./scripts/paletteGenerator.mjs"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.1.1",
     "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-navigation/drawer": "^7.10.0",
     "@react-navigation/native": "^7.2.2",
+    "@rn-primitives/accordion": "^1.4.0",
+    "@rn-primitives/portal": "^1.4.0",
     "@shopify/react-native-skia": "^2.6.2",
     "expo": "^55.0.18",
     "expo-constants": "^55.0.15",
@@ -52,7 +55,7 @@
     "@testing-library/jest-native": "^5.4.3",
     "@testing-library/react-native": "^13.3.3",
     "@types/jest": "^30.0.0",
-    "@types/react": "~19.1.0",
+    "@types/react": "^19.2.14",
     "eslint": "^10.2.1",
     "eslint-plugin-unicorn": "^64.0.0",
     "globals": "^17.5.0",
