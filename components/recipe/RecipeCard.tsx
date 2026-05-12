@@ -9,13 +9,13 @@ interface RecipeCardProps {
 
 export function RecipeCard({ recipe, onPress }: RecipeCardProps) {
   const { t } = useTranslation();
-  const totalCalories = recipe.ingredients.reduce((sum, i) => sum + i.calories, 0);
+  const totalCalories = recipe.ingredients.reduce((sum, ingredient) => sum + ingredient.calories, 0);
   const totalMinutes = recipe.prepMinutes + recipe.cookMinutes;
 
   return (
     <Pressable
       onPress={() => { onPress(recipe.id); }}
-      className="bg-white rounded-2xl overflow-hidden shadow-sm mb-4 active:opacity-70"
+      className="bg-surface rounded-2xl overflow-hidden shadow-sm mb-4 active:opacity-70"
     >
       {recipe.imageUri ? (
         <Image
@@ -24,27 +24,27 @@ export function RecipeCard({ recipe, onPress }: RecipeCardProps) {
           resizeMode="cover"
         />
       ) : (
-        <View className="w-full h-40 bg-amber-100 items-center justify-center">
+        <View className="w-full h-40 bg-accent-100 items-center justify-center">
           <Text className="text-4xl">🍽️</Text>
         </View>
       )}
 
       <View className="p-3">
-        <Text className="text-lg font-bold text-gray-900" numberOfLines={1}>
+        <Text className="text-lg font-bold text-foreground" numberOfLines={1}>
           {recipe.title}
         </Text>
-        <Text className="text-sm text-gray-500 mt-1" numberOfLines={2}>
+        <Text className="text-sm text-muted mt-1" numberOfLines={2}>
           {recipe.description}
         </Text>
 
         <View className="flex-row items-center justify-between mt-3">
           <View className="flex-row gap-3">
-            <Text className="text-xs text-gray-400">
+            <Text className="text-xs text-muted-fg">
               ⏱
               {totalMinutes}
               {t("unit.minute")}
             </Text>
-            <Text className="text-xs text-gray-400">
+            <Text className="text-xs text-muted-fg">
               🔥
               {totalCalories}
               {" "}
@@ -57,8 +57,8 @@ export function RecipeCard({ recipe, onPress }: RecipeCardProps) {
         {recipe.tags.length > 0 && (
           <View className="flex-row flex-wrap gap-1 mt-2">
             {recipe.tags.slice(0, 3).map(tag => (
-              <View key={tag} className="bg-amber-50 rounded-full px-2 py-0.5">
-                <Text className="text-xs text-amber-700">{t(`tags.${tag}`)}</Text>
+              <View key={tag} className="bg-accent-50 rounded-full px-2 py-0.5">
+                <Text className="text-xs text-accent-700">{t(`tags.${tag}`)}</Text>
               </View>
             ))}
           </View>

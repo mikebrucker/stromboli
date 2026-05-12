@@ -5,7 +5,7 @@ export default function AddRecipeScreen() {
   const { t } = useTranslation();
 
   return (
-    <View className="flex-1 bg-gray-50">
+    <View className="flex-1 bg-background">
       <Text>{t("recipe.addComingSoon")}</Text>
     </View>
   );

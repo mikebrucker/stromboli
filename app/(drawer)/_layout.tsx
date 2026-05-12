@@ -32,7 +32,7 @@ function DrawerBackButton() {
 
   return (
     <Pressable onPress={() => router.back()}>
-      <MaterialCommunityIcons name="arrow-left" size={24} />
+      <MaterialCommunityIcons name="arrow-left" size={24} className="text-foreground" />
     </Pressable>
   );
 }
@@ -41,7 +41,7 @@ function DrawerMenuButton() {
   const navigation = useNavigation();
   return (
     <Pressable onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
-      <MaterialCommunityIcons name="menu" size={24} />
+      <MaterialCommunityIcons name="menu" size={24} className="text-foreground" />
     </Pressable>
   );
 }
@@ -62,7 +62,7 @@ function ColorModeOption({ mode, icon, active, onPress }: ColorModeOptionProps) 
 
   return (
     <Pressable onPress={onPress} className={optionClassName}>
-      <MaterialCommunityIcons name={icon} size={20} />
+      <MaterialCommunityIcons name={icon} size={20} className="text-foreground" />
       <Str className="ml-3">mode.{mode}</Str>
     </Pressable>
   );
@@ -78,7 +78,7 @@ function ColorModeAccordion() {
       <Accordion
         header={(
           <View className="flex-row items-center">
-            <MaterialCommunityIcons name={activeOption.icon} size={20} />
+            <MaterialCommunityIcons name={activeOption.icon} size={20} className="text-foreground" />
             <Str className="ml-3">mode.{activeOption.mode}</Str>
           </View>
         )}

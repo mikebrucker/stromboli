@@ -16,21 +16,19 @@ export function RecipeFilter({ activeTags, onToggleTag }: RecipeFilterProps) {
     >
       {Object.values(Tags).map(tag => {
         const isActive = activeTags.includes(tag);
+        const chipClass = `rounded-full px-4 py-1.5 active:opacity-70 ${
+          isActive ? "bg-accent-500" : "bg-surface-raised"
+        }`;
+        const labelClass = `text-sm capitalize font-medium ${
+          isActive ? "text-white" : "text-muted"
+        }`;
         return (
           <Pressable
             key={tag}
             onPress={() => { onToggleTag(tag); }}
-            className={`rounded-full px-4 py-1.5 active:opacity-70 ${
-              isActive ? "bg-amber-500" : "bg-gray-100"
-            }`}
+            className={chipClass}
           >
-            <Text
-              className={`text-sm capitalize font-medium ${
-                isActive ? "text-white" : "text-gray-600"
-              }`}
-            >
-              {tag}
-            </Text>
+            <Text className={labelClass}>{tag}</Text>
           </Pressable>
         );
       })}

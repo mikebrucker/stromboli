@@ -10,7 +10,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        accent: {
+        "background": "var(--color-background)",
+        "surface": "var(--color-surface)",
+        "surface-raised": "var(--color-surface-raised)",
+        "foreground": "var(--color-foreground)",
+        "muted": "var(--color-muted)",
+        "muted-fg": "var(--color-muted-fg)",
+        "border": "var(--color-border)",
+        "accent": {
           50: "var(--accent-50)",
           100: "var(--accent-100)",
           200: "var(--accent-200)",

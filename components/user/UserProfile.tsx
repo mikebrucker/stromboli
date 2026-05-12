@@ -15,19 +15,19 @@ export function UserProfile({ onEditPress }: UserProfileProps) {
   if (!user) {
     return (
       <View className="flex-1 items-center justify-center">
-        <Text className="text-gray-500 text-base">{t("user.notFound")}</Text>
+        <Text className="text-muted text-base">{t("user.notFound")}</Text>
       </View>
     );
   }
 
   return (
     <View className="flex-1 p-4">
-      <View className="bg-white rounded-2xl p-4 shadow-sm">
+      <View className="bg-surface rounded-2xl p-4 shadow-sm">
         <View className="items-center mb-4">
-          <View className="w-20 h-20 rounded-full bg-amber-100 items-center justify-center mb-2">
+          <View className="w-20 h-20 rounded-full bg-accent-100 items-center justify-center mb-2">
             <Text className="text-4xl">👤</Text>
           </View>
-          <Text className="text-xl font-bold text-gray-900">{user.name}</Text>
+          <Text className="text-xl font-bold text-foreground">{user.name}</Text>
         </View>
 
         <View className="gap-3">
@@ -37,7 +37,7 @@ export function UserProfile({ onEditPress }: UserProfileProps) {
 
         <Pressable
           onPress={onEditPress}
-          className="mt-6 bg-amber-500 rounded-xl py-3 items-center active:opacity-70"
+          className="mt-6 bg-accent-500 rounded-xl py-3 items-center active:opacity-70"
         >
           <Text className="text-white font-semibold">{t("user.editProfile")}</Text>
         </Pressable>
@@ -48,9 +48,9 @@ export function UserProfile({ onEditPress }: UserProfileProps) {
 
 function ProfileRow({ label, value }: { label: string; value: string }) {
   return (
-    <View className="flex-row justify-between items-center py-2 border-b border-gray-100">
-      <Text className="text-gray-500 text-sm">{label}</Text>
-      <Text className="text-gray-900 text-sm font-medium">{value}</Text>
+    <View className="flex-row justify-between items-center py-2 border-b border-border">
+      <Text className="text-muted text-sm">{label}</Text>
+      <Text className="text-foreground text-sm font-medium">{value}</Text>
     </View>
   );
 }

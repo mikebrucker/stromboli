@@ -8,9 +8,10 @@ import { useColorScheme, vars } from "nativewind";
 import { useEffect } from "react";
 import { View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import "react-native-reanimated";
 
 import "@/lib/i18n";
+import "@/lib/iconInterop";
+import "react-native-reanimated";
 // eslint-disable-next-line no-restricted-imports
 import "../global.css";
 

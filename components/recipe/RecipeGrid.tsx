@@ -15,7 +15,7 @@ export function RecipeGrid({ recipes, onPressRecipe }: RecipeGridProps) {
     return (
       <View className="flex-1 items-center justify-center mt-20">
         <Text className="text-4xl mb-3">🥘</Text>
-        <Text className="text-gray-500 text-base">{t("recipe.noRecipesFound")}</Text>
+        <Text className="text-muted text-base">{t("recipe.noRecipesFound")}</Text>
       </View>
     );
   }

@@ -11,7 +11,7 @@ export default function RecipesScreen() {
   const { filteredRecipes, activeTags, toggleTag } = useRecipeFilter(recipes);
 
   return (
-    <View className="flex-1 bg-gray-50">
+    <View className="flex-1 bg-background">
       <RecipeFilter
         activeTags={activeTags}
         onToggleTag={toggleTag}

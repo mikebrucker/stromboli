@@ -19,16 +19,16 @@ export default function RecipeDetailScreen() {
   if (!recipe) {
     return (
       <View className="flex-1 items-center justify-center">
-        <Text className="text-gray-500">{t("recipe.notFound")}</Text>
+        <Text className="text-muted">{t("recipe.notFound")}</Text>
       </View>
     );
   }
 
   return (
-    <ScrollView className="flex-1 bg-gray-50">
+    <ScrollView className="flex-1 bg-background">
       <View className="p-4 gap-6">
-        <Text className="text-2xl font-bold text-gray-900">{recipe.title}</Text>
-        <Text className="text-gray-500">{recipe.description}</Text>
+        <Text className="text-2xl font-bold text-foreground">{recipe.title}</Text>
+        <Text className="text-muted">{recipe.description}</Text>
         <Suspense fallback={null}>
           <RecipeCharts recipe={recipe} />
         </Suspense>

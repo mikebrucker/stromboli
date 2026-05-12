@@ -40,7 +40,7 @@ export function Accordion({ header, children }: AccordionProps) {
       <Pressable onPress={toggle} className="flex-row items-center p-3">
         <View className="flex-1">{header}</View>
         <Animated.View style={chevronStyle}>
-          <MaterialCommunityIcons name="chevron-down" size={20} />
+          <MaterialCommunityIcons name="chevron-down" size={20} className="text-foreground" />
         </Animated.View>
       </Pressable>
       <Animated.View style={contentStyle}>
