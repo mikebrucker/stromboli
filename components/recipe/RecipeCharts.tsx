@@ -1,5 +1,5 @@
-import { BarChart } from "@/components/charts/BarChart";
-import { PieChart } from "@/components/charts/PieChart";
+import { BarChart } from "@/components/chart/BarChart";
+import { PieChart } from "@/components/chart/PieChart";
 import type { Recipe } from "@/types/recipe.types";
 import { useTranslation } from "react-i18next";
 

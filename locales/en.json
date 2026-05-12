@@ -59,5 +59,10 @@
     "save": "Save",
     "name": "Name",
     "namePlaceholder": "Your name"
+  },
+  "mode": {
+    "system": "System",
+    "dark": "Dark",
+    "light": "Light"
   }
 }

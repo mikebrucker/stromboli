@@ -47,8 +47,8 @@ export default function RootLayout() {
   if (!loaded) return null;
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <View style={[{ flex: 1 }, vars(accentVars)]}>
+    <GestureHandlerRootView className="flex-1">
+      <View className="flex-1" style={vars(accentVars)}>
         <Stack>
           <Stack.Screen
             name="index"
