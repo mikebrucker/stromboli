@@ -1,27 +1,23 @@
 import { useThemeStore } from "@/stores/useThemeStore";
-import { ACCENT_SHADES, type ColorMode } from "@/types/theme.types";
+import { type ColorScheme } from "@/types/theme.types";
 import { useColorScheme } from "nativewind";
 import { Appearance } from "react-native";
 
 export function useAppTheme() {
-  const { accent, colorMode, setColorMode: storeSet, setAccent } = useThemeStore();
+  const { theme, colorScheme, setColorScheme: storeSet, setTheme } = useThemeStore();
   const { setColorScheme } = useColorScheme();
 
-  const accentVars = Object.fromEntries(
-    ACCENT_SHADES.map(shade => [`--accent-${shade}`, `var(--color-${accent}-${shade})`]),
-  );
-
   return {
-    accent,
-    colorMode,
-    accentVars,
-    setColorMode: (mode: ColorMode) => {
-      storeSet(mode);
-      setColorScheme(mode);
-      if (mode === "system") {
+    theme,
+    setTheme,
+    colorScheme: colorScheme !== "system" ? colorScheme : (Appearance.getColorScheme() === "dark" ? "dark" : "light"),
+    internalColorScheme: colorScheme,
+    setColorScheme: (scheme: ColorScheme) => {
+      storeSet(scheme);
+      setColorScheme(scheme);
+      if (scheme === "system") {
         setColorScheme(Appearance.getColorScheme() === "dark" ? "dark" : "light");
       }
     },
-    setAccent,
   };
 }

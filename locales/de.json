@@ -60,7 +60,7 @@
     "name": "Name",
     "namePlaceholder": "Dein Name"
   },
-  "mode": {
+  "scheme": {
     "system": "System",
     "dark": "Dunkel",
     "light": "Hell"

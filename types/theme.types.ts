@@ -1,8 +1,8 @@
-export const ColorModes = { system: "system", light: "light", dark: "dark" } as const;
-export type ColorMode = keyof typeof ColorModes;
-export const colorModes: Array<ColorMode> = Object.values(ColorModes);
+export const ColorSchemes = { system: "system", light: "light", dark: "dark" } as const;
+export type ColorScheme = keyof typeof ColorSchemes;
+export const colorSchemes: Array<ColorScheme> = Object.values(ColorSchemes);
 
-export const Accents = {
+export const Themes = {
   slate: "slate",
   gray: "gray",
   zinc: "zinc",
@@ -26,6 +26,7 @@ export const Accents = {
   pink: "pink",
   rose: "rose",
 } as const;
-export type Accent = keyof typeof Accents;
-export const accents: Array<Accent> = Object.values(Accents);
-export const ACCENT_SHADES = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950] as const;
+export type Theme = keyof typeof Themes;
+export const themes: Array<Theme> = Object.values(Themes);
+export const THEME_SHADES_DARK = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950] as const;
+export const THEME_SHADES_LIGHT = [950, 900, 800, 700, 600, 500, 400, 300, 200, 100, 50] as const;

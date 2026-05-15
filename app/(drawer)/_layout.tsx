@@ -2,7 +2,7 @@ import { Str } from "@/components/i18n/Str";
 import { Accordion } from "@/components/ui/Accordion";
 import { classNames } from "@/helpers/genericHelper";
 import { useAppTheme } from "@/hooks/useAppTheme";
-import type { ColorMode } from "@/types/theme.types";
+import type { ColorScheme } from "@/types/theme.types";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import type { DrawerContentComponentProps } from "@react-navigation/drawer";
 import { DrawerContentScrollView } from "@react-navigation/drawer";
@@ -10,15 +10,15 @@ import { DrawerActions, useNavigation, useNavigationState } from "@react-navigat
 import { useRouter } from "expo-router";
 import { Drawer } from "expo-router/drawer";
 import { t } from "i18next";
-import type { ComponentProps } from "react";
+import { useState, type ComponentProps } from "react";
 import { Pressable, Text, View } from "react-native";
 
 type MaterialCommunityIconName = ComponentProps<typeof MaterialCommunityIcons>["name"];
 
-const COLOR_MODE_OPTIONS: Array<{ mode: ColorMode; icon: MaterialCommunityIconName }> = [
-  { mode: "system", icon: "theme-light-dark" },
-  { mode: "light", icon: "white-balance-sunny" },
-  { mode: "dark", icon: "moon-waning-crescent" },
+const COLOR_SCHEME_OPTIONS: Array<{ scheme: ColorScheme; icon: MaterialCommunityIconName }> = [
+  { scheme: "system", icon: "theme-light-dark" },
+  { scheme: "light", icon: "white-balance-sunny" },
+  { scheme: "dark", icon: "moon-waning-crescent" },
 ];
 
 function DrawerBackButton() {
@@ -46,16 +46,16 @@ function DrawerMenuButton() {
   );
 }
 
-interface ColorModeOptionProps {
-  mode: ColorMode;
+interface ColorSchemeOptionProps {
+  scheme: ColorScheme;
   icon: MaterialCommunityIconName;
   active: boolean;
   onPress: () => void;
 }
 
-function ColorModeOption({ mode, icon, active, onPress }: ColorModeOptionProps) {
+function ColorSchemeOption({ scheme, icon, active, onPress }: ColorSchemeOptionProps) {
   const optionClassName = classNames({
-    "flex-row items-center p-3": true,
+    "flex-row items-center px-4 py-3 rounded-lg": true,
     "opacity-100": active,
     "opacity-60": !active,
   });
@@ -63,33 +63,41 @@ function ColorModeOption({ mode, icon, active, onPress }: ColorModeOptionProps) 
   return (
     <Pressable onPress={onPress} className={optionClassName}>
       <MaterialCommunityIcons name={icon} size={20} className="text-foreground" />
-      <Str className="ml-3 text-foreground">mode.{mode}</Str>
+      <Str className="ml-3 text-foreground">scheme.{scheme}</Str>
     </Pressable>
   );
 }
 
-function ColorModeAccordion() {
-  const { colorMode, setColorMode } = useAppTheme();
+function ColorSchemeAccordion() {
+  const { internalColorScheme, setColorScheme } = useAppTheme();
+  const [accordionValue, setAccordionValue] = useState("");
 
-  const activeOption = COLOR_MODE_OPTIONS.find(option => option.mode === colorMode) ?? COLOR_MODE_OPTIONS[0];
+  const activeOption = COLOR_SCHEME_OPTIONS.find(option => option.scheme === internalColorScheme) ?? COLOR_SCHEME_OPTIONS[0];
 
   return (
     <View className="mt-2">
       <Accordion
+        rootClasses="bg-surface-raised rounded-lg"
+        itemClasses="flex-row items-center px-4 py-3 rounded-lg"
+        value={accordionValue}
+        onValueChange={setAccordionValue}
         header={(
           <View className="flex-row items-center">
             <MaterialCommunityIcons name={activeOption.icon} size={20} className="text-foreground" />
-            <Str className="ml-3 text-foreground">mode.{activeOption.mode}</Str>
+            <Str className="ml-3 text-foreground font-semibold">scheme.{activeOption.scheme}</Str>
           </View>
         )}
       >
-        {COLOR_MODE_OPTIONS.map(({ mode, icon }) => (
-          <ColorModeOption
-            key={mode}
-            mode={mode}
+        {COLOR_SCHEME_OPTIONS.map(({ scheme, icon }) => (
+          <ColorSchemeOption
+            key={scheme}
+            scheme={scheme}
             icon={icon}
-            active={colorMode === mode}
-            onPress={() => setColorMode(mode)}
+            active={internalColorScheme === scheme}
+            onPress={() => {
+              setColorScheme(scheme);
+              setAccordionValue("");
+            }}
           />
         ))}
       </Accordion>
@@ -106,7 +114,7 @@ function CustomDrawerItemList({ state, navigation, descriptors }: DrawerContentC
         const label = options.title ?? route.name;
 
         const itemClassName = classNames({
-          "flex-row items-center px-4 py-3 rounded-lg mx-2 my-0.5": true,
+          "flex-row items-center px-4 py-3 rounded-lg": true,
           "bg-surface-raised": focused,
         });
 
@@ -134,16 +142,16 @@ function DrawerContent(props: DrawerContentComponentProps) {
   return (
     <DrawerContentScrollView {...props} className="bg-surface">
       <CustomDrawerItemList {...props} />
-      <ColorModeAccordion />
+      <ColorSchemeAccordion />
     </DrawerContentScrollView>
   );
 }
 
 export default function DrawerLayout() {
   // todo system fix
-  const { colorMode } = useAppTheme();
+  const { colorScheme } = useAppTheme();
   let backgroundColor = "#999";
-  switch (colorMode) {
+  switch (colorScheme) {
     case "dark": {
       backgroundColor = "#333";
       break;

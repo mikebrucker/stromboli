@@ -1,3 +1,4 @@
+import { classNames } from "@/helpers/genericHelper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Content, Header, Item, Root, Trigger, useItemContext } from "@rn-primitives/accordion";
 import type { ReactNode } from "react";
@@ -12,21 +13,33 @@ import Animated, {
 interface AccordionProps {
   header: ReactNode;
   children: ReactNode;
+  rootClasses?: string;
+  itemClasses?: string;
+  value?: string;
+  onValueChange?: (val: string) => void;
 }
 
-export function Accordion({ header, children }: AccordionProps) {
-  const [value, setValue] = useState("");
-
+export function Accordion({ header, children, rootClasses, itemClasses, value: controlledValue, onValueChange }: AccordionProps) {
+  const [internalValue, setInternalValue] = useState("");
+  const value = controlledValue ?? internalValue;
+  const setValue = onValueChange ?? setInternalValue;
+  const rootClassNames = classNames({
+    [rootClasses ?? ""]: Boolean(rootClasses),
+  });
   return (
     <Root type="single" collapsible value={value} onValueChange={val => setValue(val ?? "")}>
-      <Item value="item">
-        <AccordionInner header={header}>{children}</AccordionInner>
+      <Item value="item" className={rootClassNames}>
+        <AccordionInner header={header} itemClasses={itemClasses}>{children}</AccordionInner>
       </Item>
     </Root>
   );
 }
 
-function AccordionInner({ header, children }: AccordionProps) {
+function AccordionInner({ header, children, itemClasses }: AccordionProps) {
+  const itemClassNames = classNames({
+    [itemClasses ?? ""]: Boolean(itemClasses),
+  });
+
   const { isExpanded } = useItemContext();
   const contentHeight = useRef(0);
   const animatedHeight = useSharedValue(0);
@@ -49,7 +62,7 @@ function AccordionInner({ header, children }: AccordionProps) {
   return (
     <>
       <Header>
-        <Trigger className="flex-row items-center p-3">
+        <Trigger className={itemClassNames}>
           <View className="flex-1">{header}</View>
           <Animated.View style={chevronStyle}>
             <MaterialCommunityIcons name="chevron-down" size={20} className="text-foreground" />

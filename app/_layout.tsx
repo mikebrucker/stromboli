@@ -1,4 +1,7 @@
+import { getThemeShades } from "@/helpers/themeHelper";
 import { useAppTheme } from "@/hooks/useAppTheme";
+import "@/lib/i18n";
+import "@/lib/iconInterop";
 import { useRecipeStore } from "@/stores/useRecipeStore";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { PortalHost } from "@rn-primitives/portal";
@@ -10,8 +13,6 @@ import { useEffect } from "react";
 import { View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
-import "@/lib/i18n";
-import "@/lib/iconInterop";
 import "react-native-reanimated";
 // eslint-disable-next-line no-restricted-imports
 import "../global.css";
@@ -28,12 +29,12 @@ export default function RootLayout() {
   });
 
   const seedRecipes = useRecipeStore(state => state.seedRecipes);
-  const { colorMode, accentVars } = useAppTheme();
+  const { colorScheme, internalColorScheme, theme } = useAppTheme();
   const { setColorScheme } = useColorScheme();
 
   useEffect(() => {
-    if (colorMode !== "system") setColorScheme(colorMode);
-  }, [colorMode]);
+    if (internalColorScheme !== "system") setColorScheme(internalColorScheme);
+  }, [internalColorScheme]);
 
   useEffect(() => {
     if (error) throw error;
@@ -47,10 +48,24 @@ export default function RootLayout() {
   }, [loaded, seedRecipes]);
 
   if (!loaded) return null;
+  const themeShades = getThemeShades(colorScheme === "dark");
+
+  // [ 0,   1,   2,   3, 400, 500, 600, 700, 800, 900,  10]
+  // [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
+  const themeVars = {
+    "--color-background": `var(--color-${theme}-${themeShades[10]})`,
+    "--color-surface": `var(--color-${theme}-${themeShades[9]})`,
+    "--color-surface-raised": `var(--color-${theme}-${themeShades[8]})`,
+    "--color-foreground": `var(--color-${theme}-${themeShades[0]})`,
+    "--color-muted": `var(--color-${theme}-${themeShades[4]})`,
+    "--color-muted-fg": `var(--color-${theme}-${themeShades[5]})`,
+    "--color-border": `var(--color-${theme}-${themeShades[8]})`,
+    ...Object.fromEntries(themeShades.map(shade => [`--accent-${shade}`, `var(--color-${theme}-${shade})`])),
+  };
 
   return (
     <GestureHandlerRootView className="flex-1">
-      <View className="flex-1" style={vars(accentVars)}>
+      <View className="flex-1" style={vars(themeVars)}>
         <Stack>
           <Stack.Screen
             name="index"
