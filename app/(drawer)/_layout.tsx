@@ -2,7 +2,7 @@ import { Str } from "@/components/i18n/Str";
 import { Accordion } from "@/components/ui/Accordion";
 import { classNames } from "@/helpers/genericHelper";
 import { useAppTheme } from "@/hooks/useAppTheme";
-import type { ColorScheme } from "@/types/theme.types";
+import { themes, type ColorScheme, type Theme } from "@/types/theme.types";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import type { DrawerContentComponentProps } from "@react-navigation/drawer";
 import { DrawerContentScrollView } from "@react-navigation/drawer";
@@ -105,6 +105,69 @@ function ColorSchemeAccordion() {
   );
 }
 
+interface ThemeBoxProps {
+  themeColor: Theme;
+  active: boolean;
+  onPress: () => void;
+}
+
+function ThemeBox({ themeColor, active, onPress }: ThemeBoxProps) {
+  const boxClassName = classNames({
+    "rounded-md border-2 flex-row items-center justify-center": true,
+    "border-foreground": active,
+    "border-transparent": !active,
+  });
+
+  return (
+    <Pressable onPress={onPress} style={{ width: "25%" }} className="p-1">
+      <View
+        className={boxClassName}
+        style={{ backgroundColor: `var(--color-${themeColor}-600)`, aspectRatio: 16 / 9 }}
+      >
+        <Str className="text-foreground font-semibold capitalize">{themeColor}</Str>
+      </View>
+    </Pressable>
+  );
+}
+
+function ThemeAccordion() {
+  const { theme, setTheme } = useAppTheme();
+  const [accordionValue, setAccordionValue] = useState("");
+
+  const activeOption = themes.find(item => item === theme) ?? themes[0];
+
+  return (
+    <View className="mt-2">
+      <Accordion
+        rootClasses="bg-surface-raised rounded-lg"
+        itemClasses="flex-row items-center px-4 py-3 rounded-lg"
+        value={accordionValue}
+        onValueChange={setAccordionValue}
+        header={(
+          <View className="flex-row items-center">
+            <MaterialCommunityIcons name="palette" size={20} className="text-foreground" />
+            <Str className="ml-3 text-foreground font-semibold capitalize">{activeOption}</Str>
+          </View>
+        )}
+      >
+        <View className="flex-row flex-wrap px-2 pb-3">
+          {themes.map(item => (
+            <ThemeBox
+              key={item}
+              themeColor={item}
+              active={item === theme}
+              onPress={() => {
+                setTheme(item);
+                setAccordionValue("");
+              }}
+            />
+          ))}
+        </View>
+      </Accordion>
+    </View>
+  );
+}
+
 function CustomDrawerItemList({ state, navigation, descriptors }: DrawerContentComponentProps) {
   return (
     <>
@@ -140,33 +203,25 @@ function CustomDrawerItemList({ state, navigation, descriptors }: DrawerContentC
 
 function DrawerContent(props: DrawerContentComponentProps) {
   return (
-    <DrawerContentScrollView {...props} className="bg-surface">
-      <CustomDrawerItemList {...props} />
-      <ColorSchemeAccordion />
-    </DrawerContentScrollView>
+    <View className="flex-1">
+      <DrawerContentScrollView {...props}>
+        <CustomDrawerItemList {...props} />
+      </DrawerContentScrollView>
+      <View className="px-4 pb-4">
+        <ColorSchemeAccordion />
+        <ThemeAccordion />
+      </View>
+    </View>
   );
 }
 
 export default function DrawerLayout() {
-  // todo system fix
-  const { colorScheme } = useAppTheme();
-  let backgroundColor = "#999";
-  switch (colorScheme) {
-    case "dark": {
-      backgroundColor = "#333";
-      break;
-    }
-    case "light": {
-      backgroundColor = "#ccc";
-      break;
-    }
-  }
   return (
     <Drawer
       drawerContent={props => <DrawerContent {...props} />}
       screenOptions={{
         drawerPosition: "right",
-        drawerStyle: { backgroundColor },
+        drawerStyle: { backgroundColor: "var(--color-surface)" },
         headerTitleAlign: "center",
         headerBackground: () => <View className="flex-1 bg-surface border-b border-border" />,
         headerTitle: ({ children }) => {
